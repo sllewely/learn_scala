@@ -1,0 +1,4 @@
+
+In what way are vals mutable?; The object that a val refers to cannot be changed, but, as in the case of an array, the elements of the array can be changed
+Operator overloading?; Nope
+
