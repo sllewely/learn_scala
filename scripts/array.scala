@@ -20,5 +20,11 @@ println("In what way are vals with arrays mutable?")
 println("How are alements in scala arrays accessed:?")
 // With parens, not square brackets.  How strange!
 
+println
 
+val catNames = Array("Ion", "Ziggy", "Pizza")
+for (i <- 0 to catNames.length - 1)
+  print(catNames(i) + ' ')
+
+println
 
