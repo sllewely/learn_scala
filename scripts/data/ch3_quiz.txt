@@ -1,4 +1,8 @@
 
 In what way are vals mutable?; The object that a val refers to cannot be changed, but, as in the case of an array, the elements of the array can be changed
 Operator overloading?; Nope
+Difference between Scala and Java lists?; Scala lists are immutable
+Shorthand for concatenating lists; :::
+How to prepend a list?; :: ("cons")
+Who operates on whom?; left receives right as a param, unless the method ends in a colon
 
