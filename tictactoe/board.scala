@@ -3,7 +3,7 @@
 // Sarah Llewelyn 2016
 
 class Board {
-  private val board_state = Array(Array(0, 0, 0), Array(0, 0, 0))
+  private val board_state = Array(Array(0, 0, 0), Array(0, 0, 0), Array(0, 0, 0))
 
 
   
@@ -16,14 +16,14 @@ class Board {
     }
   }
 
-  def setBoardMove(x: Int, y: Int, player: Int): Unit = {
+  private def setBoardMove(x: Int, y: Int, player: Int): Unit = {
     board_state(y)(x) = player
   }
 
 
   // value at given coordinates
-  def valueAt(x: Int, y: Int): Int = {
-    return board_state(y)(x)
+  private def valueAt(x: Int, y: Int): Int = {
+    board_state(y)(x)
   }
 
   override def toString(): String = {
@@ -34,9 +34,38 @@ class Board {
       }
       str += "\n"
     }
-    return str
+    str
   }
 
 }
 
+
+
+
+def runTicTacToe(): Unit = {
+
+  var turn = 0
+  var player = 0
+  while(turn < 9) {
+    player = turn % 2 + 1
+
+    println(turn)
+    turn += 1
+  }
+
+
+}
+
+
+
 val board = new Board
+
+println(board)
+board.move(1, 2, 2)
+board.move(1, 1, 1)
+println(board)
+
+println("game")
+runTicTacToe
+
+
