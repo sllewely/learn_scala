@@ -9,7 +9,7 @@ class Board {
   
   def move(x: Int, y: Int, player: Int): Unit = {
     // check if legal move
-    if valueAt(x, y) > 0 {
+    if (valueAt(x, y) > 0) {
       // raise error for illegal move
     } else {
       setBoardMove(x, y, player)
@@ -26,6 +26,17 @@ class Board {
     return board_state(y)(x)
   }
 
+  override def toString(): String = {
+    var str = ""
+    for(y <- 0 until 3) {
+      for(x <- 0 until 3) {
+        str += valueAt(y, x)
+      }
+      str += "\n"
+    }
+    return str
+  }
+
 }
 
-
+val board = new Board
