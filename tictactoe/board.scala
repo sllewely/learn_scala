@@ -44,12 +44,18 @@ class Board {
 
 def runTicTacToe(): Unit = {
 
+  val board = new Board
+
   var turn = 0
   var player = 0
   while(turn < 9) {
     player = turn % 2 + 1
+    println("Make your move")
+    val x = scala.io.StdIn.readLine.toInt
+    val y = scala.io.StdIn.readLine().toInt
+    board.move(x, y, player)
 
-    println(turn)
+    println(board)
     turn += 1
   }
 
