@@ -1,0 +1,6 @@
+learn programming, 30, 60, 90, 120
+art, 30, 60, 90
+writing, 30, 60
+reading, 60, 120
+exercise, 15, 30, 45
+
