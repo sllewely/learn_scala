@@ -1,4 +1,5 @@
 
+
 // Tictactoe board
 // Sarah Llewelyn 2016
 
@@ -51,12 +52,19 @@ def runTicTacToe(): Unit = {
   while(turn < 9) {
     player = turn % 2 + 1
     println("Make your move")
-    val x = scala.io.StdIn.readLine.toInt
-    val y = scala.io.StdIn.readLine().toInt
-    board.move(x, y, player)
 
-    println(board)
-    turn += 1
+    try {
+      val x = scala.io.StdIn.readLine.toInt
+      val y = scala.io.StdIn.readLine().toInt
+      board.move(x, y, player)
+
+      println(board)
+      turn += 1
+    } catch {
+      case nfe: NumberFormatException =>
+        // bad input
+    }
+
   }
 
 
