@@ -14,24 +14,36 @@ class Board {
       // raise error for illegal move
     } else {
       setBoardMove(x, y, player)
+      checkForVictory(x, y)
     }
   }
 
   private def setBoardMove(x: Int, y: Int, player: Int): Unit = {
-    board_state(y)(x) = player
+    board_state(x)(y) = player
   }
 
+  private def checkForVictory(x: Int, y: Int): Boolean = {
+    // perhaps cheaper to use a coordinates object and sets
+    // brute force for now
+    valueAt(0, 0) == valueAt(0, 1) && valueAt(0, 1) == valueAt(0, 2) ||
+    valueAt(1, 0) == valueAt(1, 1) && valueAt(1, 1) == valueAt(0, 2) ||
+    valueAt(2, 0) == valueAt(2, 1) && valueAt(2, 1) == valueAt(0, 2) ||
+    valueAt(0, 0) == valueAt(1, 0) && valueAt(1, 0) == valueAt(2, 0) ||
+    valueAt(0, 1) == valueAt(1, 1) && valueAt(1, 1) == valueAt(2, 1) ||
+    valueAt(0, 2) == valueAt(1, 2) && valueAt(1, 0) == valueAt(2, 2)
+
+  }
 
   // value at given coordinates
   private def valueAt(x: Int, y: Int): Int = {
-    board_state(y)(x)
+    board_state(x)(y)
   }
 
   override def toString(): String = {
     var str = ""
     for(y <- 0 until 3) {
       for(x <- 0 until 3) {
-        str += valueAt(y, x)
+        str += valueAt(x, y)
       }
       str += "\n"
     }
