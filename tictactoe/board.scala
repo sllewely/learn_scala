@@ -14,7 +14,6 @@ class Board {
       // raise error for illegal move
     } else {
       setBoardMove(x, y, player)
-      checkForVictory(x, y)
     }
   }
 
@@ -22,16 +21,17 @@ class Board {
     board_state(x)(y) = player
   }
 
-  private def checkForVictory(x: Int, y: Int): Boolean = {
+  def isVictorious: Boolean = {
     // perhaps cheaper to use a coordinates object and sets
     // brute force for now
-    valueAt(0, 0) == valueAt(0, 1) && valueAt(0, 1) == valueAt(0, 2) ||
-    valueAt(1, 0) == valueAt(1, 1) && valueAt(1, 1) == valueAt(0, 2) ||
-    valueAt(2, 0) == valueAt(2, 1) && valueAt(2, 1) == valueAt(0, 2) ||
-    valueAt(0, 0) == valueAt(1, 0) && valueAt(1, 0) == valueAt(2, 0) ||
-    valueAt(0, 1) == valueAt(1, 1) && valueAt(1, 1) == valueAt(2, 1) ||
-    valueAt(0, 2) == valueAt(1, 2) && valueAt(1, 0) == valueAt(2, 2)
-
+    valueAt(0, 0) == valueAt(0, 1) && valueAt(0, 1) == valueAt(0, 2) && valueAt(0, 2) != 0 ||
+    valueAt(1, 0) == valueAt(1, 1) && valueAt(1, 1) == valueAt(0, 2) && valueAt(0, 2) != 0 ||
+    valueAt(2, 0) == valueAt(2, 1) && valueAt(2, 1) == valueAt(0, 2) && valueAt(0, 2) != 0 ||
+    valueAt(0, 0) == valueAt(1, 0) && valueAt(1, 0) == valueAt(2, 0) && valueAt(2, 0) != 0 ||
+    valueAt(0, 1) == valueAt(1, 1) && valueAt(1, 1) == valueAt(2, 1) && valueAt(2, 1) != 0 ||
+    valueAt(0, 2) == valueAt(1, 2) && valueAt(1, 2) == valueAt(2, 2) && valueAt(2, 2) != 0 ||
+    valueAt(0, 0) == valueAt(1, 1) && valueAt(1, 1) == valueAt(2, 2) && valueAt(2, 2) != 0 ||
+    valueAt(0, 2) == valueAt(1, 1) && valueAt(1, 1) == valueAt(2, 0) && valueAt(2, 0) != 0
   }
 
   // value at given coordinates
@@ -61,7 +61,8 @@ def runTicTacToe(): Unit = {
 
   var turn = 0
   var player = 0
-  while(turn < 9) {
+  var won = false
+  while(turn < 9 && !won) {
     player = turn % 2 + 1
     println("Make your move")
 
@@ -71,6 +72,11 @@ def runTicTacToe(): Unit = {
       board.move(x, y, player)
 
       println(board)
+
+      if (board.isVictorious) {
+        println("You won!")
+        won = true
+      }
       turn += 1
     } catch {
       case nfe: NumberFormatException =>
